@@ -1,3 +1,5 @@
+//add cargo features, uuid = { version = "..", features = ["serde"] }
+
 #[get("/tasks")]
 async fn get_tasks(user: User, pool: &State<PgPool>) -> Result<Json<Vec::<Task>>, Status> {
     let pool = pool.inner();
@@ -36,6 +38,7 @@ impl Serialize for MyUuid {
             S: Serializer {
         let uuid = self.0.to_hyphenated().to_string();
         serializer.serialize_str(&uuid)
+        //try serializer.serialize_str(uuid.to_hyphenated().encode_lower(&mut [0; 36]))
     }
 }
 
