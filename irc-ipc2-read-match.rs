@@ -5,5 +5,6 @@ let irc_commpacket = match irc_ipc2_rx.try_recv() {
     Err(error) => {
         println!("Error caught: {}",error);
     }
+    // Err(TryRecvError::Empty) => {}, Err(TryRecvError::Disconnected) => {}
 };
 thread::sleep(_DURATION_1000MS);
